@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Switching Wifi to Monitor Mode"
+
+sudo airmon-ng check kill
+
+sudo ip link set wlp3s0 down
+
+echo "Wifi Offline"
+
+sudo macchanger -r wlp3s0 
+
+sudo iw dev wlp3s0 set type monitor
+
+sudo ip link set wlp3s0 up
+
+echo "Card wlp3s0 Online Checking Status"
+
+sudo iw dev
+
+echo "Complete, Interface now in Monitor Mode!"
+
